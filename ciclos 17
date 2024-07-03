@@ -1,0 +1,13 @@
+numeros = []
+while True:
+    numero = int(input("Ingrese un número (0 para terminar): "))
+    if numero == 0:
+        break
+    if numero % 10 == 5:
+        numeros.append(numero)
+
+if numeros:
+    promedio = sum(numeros) / len(numeros)
+    print("El promedio de los números terminados en 5 es:", promedio)
+else:
+    print("No se ingresaron números terminados en 5")
