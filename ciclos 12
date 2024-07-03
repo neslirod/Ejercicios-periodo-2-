@@ -1,0 +1,5 @@
+numero = input("Ingrese un número entero de tres dígitos: ")
+if '1' in numero:
+    print("El número contiene el dígito 1")
+else:
+    print("El número no contiene el dígito 1")
