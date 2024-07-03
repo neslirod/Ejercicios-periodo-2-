@@ -1,0 +1,7 @@
+import math
+
+numero = int(input("Ingrese un número entero: "))
+sumatoria = 0
+for i in range(1, numero + 1):
+    sumatoria += math.factorial(i)
+print("La sumatoria de todas las factoriales es:", sumatoria)
