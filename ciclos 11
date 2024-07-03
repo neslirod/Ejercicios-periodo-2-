@@ -1,0 +1,4 @@
+numero = input("Ingrese un número entero de dos dígitos: ")
+digito1, digito2 = int(numero[0]), int(numero[1])
+for i in range(min(digito1, digito2), max(digito1, digito2) + 1):
+    print(i)
