@@ -1,0 +1,4 @@
+numero = input("Ingrese un número entero de tres dígitos: ")
+for digito in numero:
+    for i in range(1, int(digito) + 1):
+        print(i)
