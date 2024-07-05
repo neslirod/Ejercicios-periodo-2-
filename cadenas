@@ -1,0 +1,12 @@
+def operar_texto(texto):
+    mayusculas = texto.upper()
+    minusculas = texto.lower()
+    primeros_dos = texto[:2]
+    ultimos_dos = texto[-2:]
+    repeticiones_ultimo = texto.count(texto[-1]) if texto else 0
+    invertido = texto[::-1]
+    return mayusculas, minusculas, primeros_dos, ultimos_dos, repeticiones_ultimo, invertido
+
+texto = "Hola mi nombre es Nesli y soy estudiante de ingenieria en tecnologias de la informacion y comunicacion, tambien soy tecnica en Equipos electronicos y tambien me gusta el arte como el baile "
+resultado = operar_texto(texto)
+print(resultado)
