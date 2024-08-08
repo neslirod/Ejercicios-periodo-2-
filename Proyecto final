@@ -1,0 +1,121 @@
+import random
+
+# Diccionario de preguntas y respuestas sobre el quiz original
+quiz_original = {
+    "¿Cuál es mi primer nombre?": "Nesli",
+    "¿Cuando cumplo años?": "24 de agosto",
+    "¿Cuales son mis colores favoritos ?": "Rosado y azul",
+    "¿Cuál es mi pelicula favorita?": "Interestellar",
+    "¿En qué año practique danza contemporanea?": "2015"
+}
+
+# Función para hacer preguntas del quiz original
+def hacer_pregunta_original(pregunta, respuesta_correcta):
+    respuesta = input(pregunta + " ")
+    if respuesta.lower() == respuesta_correcta.lower():
+        print("¡Correcto!")
+        return True
+    else:
+        print(f"Esa no es la respuesta, no me conoces bien. La respuesta correcta es: {respuesta_correcta}")
+        return False
+
+# Función para iniciar el quiz original
+def iniciar_quiz_original():
+    puntaje_original = 0
+    for pregunta, respuesta in quiz_original.items():
+        if hacer_pregunta_original(pregunta, respuesta):
+            puntaje_original += 1
+    return puntaje_original
+
+# Diccionario de preguntas personalizadas sobre Nesli
+quiz_personalizado = {
+    "¿Cuál es mi número favorito?": {
+        "opciones": ["12", "8", "24", "36"],
+        "respuesta": "24"
+    },
+    "¿Qué más me gusta hacer?": {
+        "opciones": ["Leer", "Viajar", "Mimir", "Cocinar"],
+        "respuesta": "Mimir"
+    },
+    "¿Qué no puede faltar en la cama porque si no, no duermo?": {
+        "opciones": ["Una almohada extra", "Los peluches de Nesli", "Una manta pesada", "Una luz nocturna"],
+        "respuesta": "Los peluches de Nesli"
+    },
+    "¿Cuál es mi fruta favorita?": {
+        "opciones": ["Manzana", "Piña", "Uva", "Naranja"],
+        "respuesta": "Uva"
+    },
+    "¿En qué año nací?": {
+        "opciones": ["2000", "2003", "2005", "2006"],
+        "respuesta": "2005"
+    }
+}
+
+# Función para hacer preguntas del quiz personalizado
+def hacer_pregunta_personalizada(pregunta, opciones, respuesta_correcta):
+    print("\n" + pregunta)
+    for i, opcion in enumerate(opciones, start=1):
+        print(f"{i}. {opcion}")
+
+    while True:
+        try:
+            seleccion = int(input("Selecciona la opción que más se parezca a Nesli (1-4): "))
+            if 1 <= seleccion <= len(opciones):
+                respuesta_usuario = opciones[seleccion - 1]
+                if respuesta_usuario.lower() == respuesta_correcta.lower():
+                    print("¡Correcto!")
+                    return True
+                else:
+                    print(f"Esa no es la respuesta, no me conoces bien. La respuesta correcta es: {respuesta_correcta}")
+                    return False
+            else:
+                print("Por favor, selecciona un número que sí exista idiota.")
+        except ValueError:
+            print("Por favor, introduce un número.")
+
+# Función para iniciar el quiz personalizado
+def iniciar_quiz_personalizado():
+    puntaje_personalizado = 0
+    while True:
+        puntaje_personalizado = 0
+        preguntas_aleatorias = random.sample(list(quiz_personalizado.items()), len(quiz_personalizado))
+        for pregunta, datos in preguntas_aleatorias:
+            if hacer_pregunta_personalizada(pregunta, datos["opciones"], datos["respuesta"]):
+                puntaje_personalizado += 1
+        print(f"\nTu puntaje final es: {puntaje_personalizado}/{len(quiz_personalizado)}")
+        repetir = input("¿Quieres intentar de nuevo? (sí/no): ").lower()
+        if repetir != "sí":
+            break
+    return puntaje_personalizado
+
+# Función para mostrar mensaje personalizado basado en el puntaje total
+def mostrar_mensaje(puntaje_total, total_preguntas):
+    porcentaje = (puntaje_total / total_preguntas) * 100
+    if porcentaje == 100:
+        print("¡Excelente! Me conoces muy bien.")
+    elif porcentaje > 70:
+        print("Well, me conoces, pero por no conocerme al máximo me debes un dulce.")
+    elif porcentaje == 50:
+        print("Me conoces al 50%, por lo tanto me debes un Starbucks por no conocer mi otro 50%.")
+    elif porcentaje >= 30:
+        print("Pss, me debes una hamburguesa de lo Muyayo por no conocerme bien.")
+    elif porcentaje >= 15:
+        print("Me debes sushi. Te debería dar vergüenza que supuestamente eres mi amigo/a y no me conoces para nada.")
+    else:
+        print("No me conoces nada, ni me hables XOXO.")
+
+# Función principal para ejecutar ambos quizzes y mostrar mensaje
+def main():
+    puntaje_original = iniciar_quiz_original()
+    puntaje_personalizado = iniciar_quiz_personalizado()
+
+    puntaje_total = puntaje_original + puntaje_personalizado
+    total_preguntas = len(quiz_original) + len(quiz_personalizado)
+
+    print("\n¡Gracias por jugar xoxo!")
+    print(f"\nTu puntaje total es: {puntaje_total}/{total_preguntas}")
+    mostrar_mensaje(puntaje_total, total_preguntas)
+
+# Iniciar el quiz
+if __name__ == "__main__":
+    main()
